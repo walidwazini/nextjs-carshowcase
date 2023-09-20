@@ -1,21 +1,23 @@
 'use client'
 
-import React from 'react'
+import React, { MouseEventHandler } from 'react'
 import Image from 'next/image'
 import { NextPage } from 'next'
 
 interface Props {
-  title: string
+  title: string,
+  containerStyles?: string,
+  handleClick?: MouseEventHandler<HTMLButtonElement>
 }
 
 
-const CustomButton: NextPage<Props> = (props) => {
-  const { title } = props
+const CustomButton: NextPage<Props> = ({ title, containerStyles, handleClick }) => {
+  // const { title } = props
   return (
     <button
       disabled={false}
       type='button'
-      className={`flex bg-blue-600 rounded-xl text-white flex-row relative justify-center items-center py-3 px-6 outline-none`}
+      className={`custom-btn ${containerStyles} `}
       onClick={() => { }}
     >
       <span className={`flex-1`} >
