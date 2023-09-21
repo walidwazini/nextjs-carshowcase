@@ -6,17 +6,18 @@ import { NextPage } from 'next'
 
 interface Props {
   title: string,
+  btnType?: 'button' | 'submit',
   containerStyles?: string,
   handleClick?: MouseEventHandler<HTMLButtonElement>
 }
 
 
-const CustomButton: NextPage<Props> = ({ title, containerStyles, handleClick }) => {
+const CustomButton: NextPage<Props> = ({ title, btnType, containerStyles, handleClick }) => {
   // const { title } = props
   return (
     <button
       disabled={false}
-      type='button'
+      type={btnType || 'button'}
       className={`custom-btn ${containerStyles} `}
       onClick={() => { }}
     >
