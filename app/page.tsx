@@ -1,8 +1,17 @@
 import Image from 'next/image'
 
 import { Hero, SearchBar } from '@/components'
+import { fetchCars } from '@/utils'
 
-export default function Home() {
+export default async function Home() {
+  const allCars = await fetchCars()
+
+  const isDataEmpty = !Array.isArray(allCars)
+    || allCars.length < 0
+    || !allCars
+
+  console.log(allCars)
+
   return (
     <main className="overflow-hidden">
       <Hero />
@@ -23,6 +32,23 @@ export default function Home() {
             <div>year</div>
           </div>
         </div>
+        {!isDataEmpty ? (
+          <section>
+            <div className="home__cars-wrapper">
+              {allCars?.map((car, i) => (
+                <div key={`${car.mpg}-${1 + i}`} >
+                  {car.model}
+                </div>
+              ))}
+            </div>
+          </section>
+        ) : (
+          <div className="home__error-container">
+            <h1 className='text-black text-xl' >Oops, no results</h1>
+            <p>{allCars?.message}</p>
+          </div>
+        )}
+
       </div>
     </main>
   )
