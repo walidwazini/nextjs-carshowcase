@@ -8,21 +8,27 @@ interface Props {
   title: string,
   btnType?: 'button' | 'submit',
   containerStyles?: string,
+  textStyles?: string,
+  rightIcon?: any,
   handleClick?: MouseEventHandler<HTMLButtonElement>
 }
 
 
-const CustomButton: NextPage<Props> = ({ title, btnType, containerStyles, handleClick }) => {
-  // const { title } = props
+const CustomButton: NextPage<Props> = ({ 
+  title, btnType, containerStyles, 
+  textStyles, rightIcon, handleClick }) => {
   return (
     <button
       disabled={false}
       type={btnType || 'button'}
       className={`custom-btn ${containerStyles} `}
-      onClick={() => { }}
+      onClick={handleClick}
     >
-      <span className={`flex-1`} >
+      <span className={`flex-1 ${textStyles} `} >
         {title}
+      </span>
+      <span className='text-white' >
+        {rightIcon}
       </span>
     </button>
   )

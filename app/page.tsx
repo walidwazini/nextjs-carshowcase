@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import { Hero, SearchBar } from '@/components'
+import { CarCard, Hero, SearchBar } from '@/components'
 import { fetchCars } from '@/utils'
 
 export default async function Home() {
@@ -9,8 +9,6 @@ export default async function Home() {
   const isDataEmpty = !Array.isArray(allCars)
     || allCars.length < 0
     || !allCars
-
-  console.log(allCars)
 
   return (
     <main className="overflow-hidden">
@@ -36,9 +34,10 @@ export default async function Home() {
           <section>
             <div className="home__cars-wrapper">
               {allCars?.map((car, i) => (
-                <div key={`${car.mpg}-${1 + i}`} >
-                  {car.model}
-                </div>
+                // <div key={`${car.mpg}-${1 + i}`} >
+                //   {car.model}
+                // </div>
+                <CarCard key={i} car={car} />
               ))}
             </div>
           </section>
