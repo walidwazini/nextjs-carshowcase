@@ -1,15 +1,17 @@
 "use client"
 
 import Image from "next/image"
+import React, { useState } from 'react'
 import { BsFuelPumpFill } from 'react-icons/bs'
 import { PiSteeringWheelFill } from 'react-icons/pi'
 import { AiFillRightSquare, AiFillCaretRight } from 'react-icons/ai'
 import { GiCarWheel } from 'react-icons/gi'
 
 import { CustomButton } from ".";
+import CarDetails from "./CarDetails"
 import { calculateCarRent } from "@/utils";
 
-interface CarProps {
+export interface CarProps {
   model: string;
   make: string;
   mpg: number;
@@ -27,6 +29,7 @@ const CarCard = ({ car }: CarCardProps) => {
   const { city_mpg, year, make, model, transmission, drive } = car;
 
   const carRent = calculateCarRent(city_mpg, year)
+  const [isOpen, setIsOpen] = useState(true)
 
 
   return (
@@ -71,10 +74,11 @@ const CarCard = ({ car }: CarCardProps) => {
             containerStyles='w-full py-[16px] rounded-full bg-primary-blue'
             textStyles='text-white text-[14px] leading-[17px] font-bold'
             rightIcon={<AiFillCaretRight size={20} />}
+            handleClick={() => setIsOpen(true)}
           />
         </div>
       </div>
-
+      <CarDetails isOpen={isOpen} closeModal={() => setIsOpen(false)} car={car} />
     </div>
   )
 }
