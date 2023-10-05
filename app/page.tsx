@@ -1,8 +1,9 @@
 import Image from 'next/image'
 
-import { CarCard, Hero, SearchBar } from '@/components'
+import { CarCard, CustomFilter, Hero, SearchBar } from '@/components'
 import { fetchCars } from '@/utils'
 import { HomeProps } from '@/types'
+import { fuels, yearsOfProduction } from '@/constants'
 
 export default async function Home({ searchParams }: HomeProps) {
   const allCars = await fetchCars({
@@ -33,17 +34,14 @@ export default async function Home({ searchParams }: HomeProps) {
         <div className="home__filters">
           <SearchBar />
           <div className="home__filter-container">
-            <div>fuel</div>
-            <div>year</div>
+            <CustomFilter title='fuel' options={fuels}  />
+            <CustomFilter title='year' options={yearsOfProduction}  />
           </div>
         </div>
         {!isDataEmpty ? (
           <section>
             <div className="home__cars-wrapper">
               {allCars?.map((car, i) => (
-                // <div key={`${car.mpg}-${1 + i}`} >
-                //   {car.model}
-                // </div>
                 <CarCard key={i} car={car} />
               ))}
             </div>
