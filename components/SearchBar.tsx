@@ -8,7 +8,7 @@ import { BiSearchAlt } from 'react-icons/bi'
 import SearchManufacturer from './SearchManufacturer'
 
 const SearchBarButton = ({ otherClasses }: { otherClasses: string }) => (
-  <button type='submit' className={`-ml-3 z-10 ${otherClasses} `} >
+  <button type='submit' className={`-ml-6 z-10 ${otherClasses} `} >
     <BiSearchAlt />
   </button>
 )
@@ -61,8 +61,10 @@ const SearchBar = () => {
         <SearchManufacturer manufacturer={manufacturer} setManufacturer={setManufacturer} />
         <SearchBarButton otherClasses='sm:hidden' />
       </div>
-      <div className="searchbar__item">
-        <FaCarSide />
+      <div className="searchbar__item  ">
+        <FaCarSide
+        className='absolute ml-4'
+        />
         <input
           type='text' name='model' value={model}
           onChange={ev => setModel(ev.target.value)}

@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { Dialog, Transition } from '@headlessui/react'
 import { IoMdClose } from 'react-icons/io'
 
-import { CarProps } from './CarCard'
+import { CarProps } from '@/types'
 
 interface CarDetailsProps {
   isOpen?: boolean;

@@ -10,16 +10,7 @@ import { GiCarWheel } from 'react-icons/gi'
 import { CustomButton } from ".";
 import CarDetails from "./CarDetails"
 import { calculateCarRent } from "@/utils";
-
-export interface CarProps {
-  model: string;
-  make: string;
-  mpg: number;
-  transmission: string;
-  year: number;
-  drive: string;
-  city_mpg: number;
-}
+import { CarProps } from "@/types"
 
 interface CarCardProps {
   car: CarProps
