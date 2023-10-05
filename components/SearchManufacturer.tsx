@@ -4,9 +4,7 @@ import React, { Fragment, useState } from 'react'
 import { FaCarSide } from 'react-icons/fa'
 import { Combobox, Transition } from '@headlessui/react'
 
-const manufacturerList = [
-  'Audi', 'BMW', 'Proton', 'Perodua'
-]
+import { manufacturerList } from '@/constants'
 
 interface Props {
   manufacturer?: string

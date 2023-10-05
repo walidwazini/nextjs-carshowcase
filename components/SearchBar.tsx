@@ -59,7 +59,7 @@ const SearchBar = () => {
     <form className='searchbar' onSubmit={searchHandler} >
       <div className='searchbar__item' >
         <SearchManufacturer manufacturer={manufacturer} setManufacturer={setManufacturer} />
-        <SearchBarButton otherClasses='sm:hidden' />
+        <SearchBarButton otherClasses='block' />
       </div>
       <div className="searchbar__item  ">
         <FaCarSide

@@ -7,21 +7,30 @@ import { useRouter } from 'next/navigation'
 import { BsChevronBarExpand } from 'react-icons/bs'
 
 import { CustomFilterProps } from '@/types'
+import { updateSearchParams } from '@/utils'
 
 const CustomFilter = ({ title, options }: CustomFilterProps) => {
   const router = useRouter()
   const [selected, setSelected] = useState(options[0])
 
-  const optionRef = useRef<any>()
+  
+  // * We pass an event which contain two values
+  const handleUpdateParams = (e: { title: string, value: string }) => {
+    const newPathname = updateSearchParams(title, e.value.toLowerCase())
+    router.push(newPathname)
 
-  const handleUpdateParams = () => {
+    // todo: Trigger loading modal
   }
 
   return (
     <div className='w-fit ' >
       <Listbox
         value={selected}
-        onChange={ev => setSelected(ev)}
+        onChange={ev => {
+          setSelected(ev)
+          // * This will make sure the url updated with params right after we change a selection
+          handleUpdateParams(ev)
+        }}
       >
         <div className='relative w-fit z-10  ' >
           <Listbox.Button className={'custom-filter__btn'} >
