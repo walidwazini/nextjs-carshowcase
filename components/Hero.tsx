@@ -6,7 +6,13 @@ import Image from 'next/image'
 import { CustomButton } from '.'
 
 const Hero = () => {
-  const handleScroll = () => console.log('handle scroll')
+  const handleScroll = () => {
+    const nextSection = document.getElementById('discover')
+
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
 
   return (
     <div className='hero' >

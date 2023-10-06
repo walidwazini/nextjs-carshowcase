@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import { CarCard, CustomFilter, Hero, SearchBar } from '@/components'
+import { CarCard, CustomFilter, Hero, SearchBar, ShowMore } from '@/components'
 import { fetchCars } from '@/utils'
 import { HomeProps } from '@/types'
 import { fuels, yearsOfProduction } from '@/constants'
@@ -10,7 +10,7 @@ export default async function Home({ searchParams }: HomeProps) {
     manufacturer: searchParams.manufacturer || "",
     year: searchParams.year || 2022,
     fuel: searchParams.fuel || "",
-    limit: searchParams.limit || 10,
+    limit: searchParams.limit || 5,
     model: searchParams.model || "",
   })
 
@@ -23,7 +23,7 @@ export default async function Home({ searchParams }: HomeProps) {
   return (
     <main className="overflow-hidden">
       <Hero />
-      <div className='mt-12 padding-x padding-y max-width ' >
+      <div id='discover' className='mt-12 padding-x padding-y max-width ' >
         <div className="home__text-container">
           <h1 className="text-4xl font-extrabold">
             Car Catalogue
@@ -36,8 +36,8 @@ export default async function Home({ searchParams }: HomeProps) {
         <div className="home__filters ">
           <SearchBar />
           <div className="home__filter-container mt-4 ">
-            <CustomFilter title='fuel' options={fuels}  />
-            <CustomFilter title='year' options={yearsOfProduction}  />
+            <CustomFilter title='fuel' options={fuels} />
+            <CustomFilter title='year' options={yearsOfProduction} />
           </div>
         </div>
         {!isDataEmpty ? (
@@ -47,6 +47,10 @@ export default async function Home({ searchParams }: HomeProps) {
                 <CarCard key={i} car={car} />
               ))}
             </div>
+            <ShowMore
+              pageNumber={(searchParams.limit || 5) / 5}
+              isNext={(searchParams.limit || 5) > allCars.length}
+            />
           </section>
         ) : (
           <div className="home__error-container">
@@ -54,7 +58,6 @@ export default async function Home({ searchParams }: HomeProps) {
             <p>{allCars?.message}</p>
           </div>
         )}
-
       </div>
     </main>
   )
