@@ -14,6 +14,8 @@ export default async function Home({ searchParams }: HomeProps) {
     model: searchParams.model || "",
   })
 
+  console.log(allCars)
+
   const isDataEmpty = !Array.isArray(allCars)
     || allCars.length < 0
     || !allCars
@@ -31,9 +33,9 @@ export default async function Home({ searchParams }: HomeProps) {
           </p>
         </div>
 
-        <div className="home__filters">
+        <div className="home__filters ">
           <SearchBar />
-          <div className="home__filter-container">
+          <div className="home__filter-container mt-4 ">
             <CustomFilter title='fuel' options={fuels}  />
             <CustomFilter title='year' options={yearsOfProduction}  />
           </div>
